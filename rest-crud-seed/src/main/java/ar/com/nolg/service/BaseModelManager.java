@@ -9,9 +9,9 @@ public interface BaseModelManager<T extends BaseModel> extends BaseEntityManager
 
 	/**
 	 */
-	public abstract T get(final Long modelID);
+	public abstract T get(Long modelID);
 
 	/**
 	 */
-	public abstract T getFULL(final Long modelID);
+	public abstract T getFULL(Long modelID);
 }

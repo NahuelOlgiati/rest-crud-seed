@@ -10,7 +10,7 @@ import javax.persistence.criteria.Predicate;
 import ar.com.nolg.model.BaseModel;
 import ar.com.nolg.util.CompareUtil;
 
-public final class PredicateBuilder extends ExpressionBuilder {
+public class PredicateBuilder extends ExpressionBuilder {
 	/**
 	 */
 	public PredicateBuilder(CriteriaBuilder cb) {
@@ -19,11 +19,11 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final Predicate like(final Expression<String> expression, final String value) {
+	public Predicate like(Expression<String> expression, String value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
-			final StringBuilder sb = new StringBuilder();
+			StringBuilder sb = new StringBuilder();
 			sb.append("%").append(value.trim().replaceAll(" ", "%")).append("%");
 			p = cb.like(cb.upper(cb.trim(expression)), sb.toString().toUpperCase());
 		}
@@ -32,7 +32,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final Predicate equal(final Expression<String> expression, final String value) {
+	public Predicate equal(Expression<String> expression, String value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -43,7 +43,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final Predicate equal(final Expression<Integer> expression, final Integer value) {
+	public Predicate equal(Expression<Integer> expression, Integer value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -54,7 +54,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final Predicate equal(final Expression<Long> expression, final Long value) {
+	public Predicate equal(Expression<Long> expression, Long value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -65,7 +65,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final Predicate equal(final Expression<Double> expression, final Double value) {
+	public Predicate equal(Expression<Double> expression, Double value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -76,7 +76,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final Predicate equal(final Expression<BigDecimal> expression, final BigDecimal value) {
+	public Predicate equal(Expression<BigDecimal> expression, BigDecimal value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -87,7 +87,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final Predicate equal(final Expression<Boolean> expression, final Boolean value) {
+	public Predicate equal(Expression<Boolean> expression, Boolean value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -98,7 +98,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final <T extends Enum<?>> Predicate equal(final Expression<T> expression, final T value) {
+	public <T extends Enum<?>> Predicate equal(Expression<T> expression, T value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -109,7 +109,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final <T extends BaseModel> Predicate equal(final Expression<T> expression, final T value) {
+	public <T extends BaseModel> Predicate equal(Expression<T> expression, T value) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(value)) {
@@ -122,8 +122,8 @@ public final class PredicateBuilder extends ExpressionBuilder {
 	 * Creates an inclusive between expression. If range parameters are missing
 	 * they resolve to a true expression.
 	 */
-	public final <Y extends java.lang.Comparable<? super Y>> Predicate between(final Expression<Y> expression,
-			final Y from, final Y to) {
+	public <Y extends java.lang.Comparable<? super Y>> Predicate between(Expression<Y> expression,
+			Y from, Y to) {
 		Predicate pa = cb.conjunction();
 		Predicate pb = cb.conjunction();
 
@@ -140,8 +140,8 @@ public final class PredicateBuilder extends ExpressionBuilder {
 	 * Creates an inclusive between expression. If range parameters are missing
 	 * they resolve to a true expression.
 	 */
-	public final Predicate between(final Expression<BigDecimal> expression, final BigDecimal from,
-			final BigDecimal to) {
+	public Predicate between(Expression<BigDecimal> expression, BigDecimal from,
+			BigDecimal to) {
 		Predicate pa = cb.conjunction();
 		Predicate pb = cb.conjunction();
 
@@ -156,7 +156,7 @@ public final class PredicateBuilder extends ExpressionBuilder {
 
 	/**
 	 */
-	public final <T> Predicate in(final Expression<T> expression, final List<T> values) {
+	public <T> Predicate in(Expression<T> expression, List<T> values) {
 		Predicate p = cb.conjunction();
 
 		if (!CompareUtil.isEmpty(values)) {

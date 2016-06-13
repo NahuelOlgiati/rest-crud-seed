@@ -46,6 +46,9 @@
 					<jvmArguments>
 						<jvmArgument>-Xmx128m</jvmArgument>
 					</jvmArguments>
+					<properties>
+						<swarm.debug.port>8787</swarm.debug.port>
+					</properties>
 				</configuration>
 				<executions>
 					<execution>

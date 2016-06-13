@@ -3,10 +3,10 @@ package ar.com.nolg.service.support;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public final class QueryHint implements Serializable {
-	private final int firstResult;
-	private final int maxResults;
-	private final boolean countResults;
+public class QueryHint implements Serializable {
+	private int firstResult;
+	private int maxResults;
+	private boolean countResults;
 
 	/** 
 	 */
@@ -24,13 +24,13 @@ public final class QueryHint implements Serializable {
 
 	/**
 	 */
-	public final int getFirstResult() {
+	public int getFirstResult() {
 		return firstResult;
 	}
 
 	/**
 	 */
-	public final int getMaxResults() {
+	public int getMaxResults() {
 		return maxResults;
 	}
 

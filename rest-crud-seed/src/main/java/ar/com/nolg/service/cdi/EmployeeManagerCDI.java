@@ -5,11 +5,13 @@ import java.util.List;
 import javax.inject.Named;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.Transactional;
 import javax.transaction.TransactionalException;
 
 import ar.com.nolg.model.Employee;
 import ar.com.nolg.service.EmployeeManager;
 
+@Transactional
 @Named("employeeManager")
 public class EmployeeManagerCDI extends BasePersistenceManagerCDI<Employee> implements EmployeeManager {
 	/**
@@ -26,8 +28,8 @@ public class EmployeeManagerCDI extends BasePersistenceManagerCDI<Employee> impl
 
 		List<Employee> employeeList = null;
 		try {
-			final CriteriaBuilder cb = em.getCriteriaBuilder();
-			final CriteriaQuery<Employee> cq = cb.createQuery(getModelClass());
+			CriteriaBuilder cb = em.getCriteriaBuilder();
+			CriteriaQuery<Employee> cq = cb.createQuery(getModelClass());
 			cq.from(getModelClass());
 
 			// Gets data.

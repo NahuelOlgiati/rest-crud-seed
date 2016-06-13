@@ -19,7 +19,7 @@ public abstract class BaseModelManagerCDI<T extends BaseModel> extends BaseEntit
 	/**
 	 */
 	@Override
-	public final T get(final Long modelID) {
+	public T get(Long modelID) {
 		T model = null;
 		try {
 			model = em.find(getModelClass(), modelID);
@@ -32,7 +32,7 @@ public abstract class BaseModelManagerCDI<T extends BaseModel> extends BaseEntit
 	/**
 	 */
 	@Override
-	public final T getFULL(final Long modelID) {
+	public T getFULL(Long modelID) {
 		T model = null;
 		try {
 			if (!CompareUtil.isEmpty(model = get(modelID))) {
@@ -46,10 +46,10 @@ public abstract class BaseModelManagerCDI<T extends BaseModel> extends BaseEntit
 
 	/**
 	 */
-	protected final <X> X getUnique(final CriteriaQuery<X> criteriaQuery) {
+	protected <X> X getUnique(CriteriaQuery<X> criteriaQuery) {
 		X model = null;
 		try {
-			final TypedQuery<X> tq = em.createQuery(criteriaQuery);
+			TypedQuery<X> tq = em.createQuery(criteriaQuery);
 			model = tq.getSingleResult();
 		} catch (NoResultException n) {
 		} catch (Throwable t) {
@@ -60,10 +60,10 @@ public abstract class BaseModelManagerCDI<T extends BaseModel> extends BaseEntit
 
 	/**
 	 */
-	protected final <X> List<X> getList(final CriteriaQuery<X> criteriaQuery, final QueryHint queryHint) {
+	protected <X> List<X> getList(CriteriaQuery<X> criteriaQuery, QueryHint queryHint) {
 		List<X> modelList = null;
 		try {
-			final TypedQuery<X> tq = em.createQuery(criteriaQuery);
+			TypedQuery<X> tq = em.createQuery(criteriaQuery);
 			tq.setFirstResult(queryHint.getFirstResult());
 			tq.setMaxResults(queryHint.getMaxResults());
 			modelList = tq.getResultList();
@@ -75,8 +75,8 @@ public abstract class BaseModelManagerCDI<T extends BaseModel> extends BaseEntit
 
 	/**
 	 */
-	protected final <X> QueryHintResult<X> getQueryHintResult(final CriteriaQuery<X> criteriaQuery,
-			final QueryHint queryHint) {
+	protected <X> QueryHintResult<X> getQueryHintResult(CriteriaQuery<X> criteriaQuery,
+			QueryHint queryHint) {
 		QueryHintResult<X> queryHintResult = null;
 
 		List<X> list = getList(criteriaQuery, queryHint);
@@ -93,10 +93,10 @@ public abstract class BaseModelManagerCDI<T extends BaseModel> extends BaseEntit
 
 	/**
 	 */
-	protected final <X> List<X> getList(final CriteriaQuery<X> criteriaQuery) {
+	protected <X> List<X> getList(CriteriaQuery<X> criteriaQuery) {
 		List<X> modelList = null;
 		try {
-			final TypedQuery<X> tq = em.createQuery(criteriaQuery);
+			TypedQuery<X> tq = em.createQuery(criteriaQuery);
 			modelList = tq.getResultList();
 		} catch (Throwable t) {
 			throw new TransactionalException(t.getMessage(), t);
