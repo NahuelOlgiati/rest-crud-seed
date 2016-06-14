@@ -36,7 +36,7 @@ public class EmployeeRest {
 
 	@GET
 	@Path("/get:{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public Response findById(@PathParam("id") Long id) {
 		final Employee employee = employeeManager.get(id);
 		if (CompareUtil.isEmpty(employee)) {
@@ -46,7 +46,8 @@ public class EmployeeRest {
 	}
 
 	@POST
-	@Consumes("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public Response create(Employee employee) {
 		Response r = null;
 		try {
@@ -59,8 +60,8 @@ public class EmployeeRest {
 	}
 
 	@PUT
-	@Consumes("application/json")
-	@Produces("text/plain")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public Response update(Employee employee) {
 		Response r = null;
 		try {
@@ -74,7 +75,7 @@ public class EmployeeRest {
 
 	@DELETE
 	@Path("/{id:[0-9][0-9]*}")
-	@Produces("text/plain")
+	@Produces(MediaType.TEXT_PLAIN)
 	public Response deleteById(@PathParam("id") Long id) {
 		Response r = null;
 		try {
